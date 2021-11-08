@@ -1,21 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React from "react";
+import { LogBox } from "react-native";
+import GlobalProvider from "./src/context/Provider";
+import AppContainer from "./src/navigations";
 export default function App() {
+  LogBox.ignoreLogs([
+    `Setting a timer for a long period`,
+    "AsyncStorage has been extracted from react-native core and will be removed in a future release.",
+  ]);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <GlobalProvider>
+      <AppContainer />
+    </GlobalProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
